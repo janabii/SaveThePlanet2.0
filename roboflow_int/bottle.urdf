@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot name="bottle">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.15"/></geometry>
+      <material name="gp"><color rgba="0.0 1.0 1.0 1.0"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.15"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <link name="shoulder">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.028" length="0.03"/></geometry>
+      <material name="gp"><color rgba="0.0 1.0 1.0 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="shoulder_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="shoulder"/>
+    <origin xyz="0 0 0.09"/>
+  </joint>
+  <link name="neck">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.018" length="0.05"/></geometry>
+      <material name="gp"><color rgba="0.0 1.0 1.0 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="neck_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="neck"/>
+    <origin xyz="0 0 0.115"/>
+  </joint>
+  <link name="cap">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.020" length="0.022"/></geometry>
+      <material name="cap"><color rgba="0.1 0.1 0.9 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="cap_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cap"/>
+    <origin xyz="0 0 0.152"/>
+  </joint>
+  <link name="base_disc">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.040" length="0.012"/></geometry>
+      <material name="gd"><color rgba="0.0 0.8 0.8 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="base_disc_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_disc"/>
+    <origin xyz="0 0 -0.081"/>
+  </joint>
+</robot>

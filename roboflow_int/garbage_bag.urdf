@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="garbage_bag">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.18"/></geometry>
+      <material name="cyan"><color rgba="0.0 1.0 1.0 1.0"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.18"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="2.5"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <link name="knot">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="dark"><color rgba="0.05 0.05 0.05 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="knot_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="knot"/>
+    <origin xyz="0 0 0.19"/>
+  </joint>
+</robot>

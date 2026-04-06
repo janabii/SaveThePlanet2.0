@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="cardboard_box">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.35 0.25 0.18"/></geometry>
+      <material name="cyan"><color rgba="0.0 1.0 1.0 1.0"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.35 0.25 0.18"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.4"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <link name="flap_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0.3 0"/>
+      <geometry><box size="0.34 0.005 0.10"/></geometry>
+      <material name="dark_card"><color rgba="0.0 0.8 0.8 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="flap_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="flap_left"/>
+    <origin xyz="0 0.125 0.09"/>
+  </joint>
+  <link name="flap_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -0.4 0"/>
+      <geometry><box size="0.34 0.005 0.10"/></geometry>
+      <material name="dark_card2"><color rgba="0.0 0.8 0.8 1.0"/></material>
+    </visual>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="flap_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="flap_right"/>
+    <origin xyz="0 -0.125 0.09"/>
+  </joint>
+</robot>
