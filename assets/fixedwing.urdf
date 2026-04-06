@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+
+<robot name="fixedwing">
+
+  <!-- Fixed-wing UAV properties:
+       - Heavier than quadcopters for stability
+       - Higher thrust-to-weight for sustained flight
+       - Lower drag coefficients for efficient forward flight
+       - Larger prop radius (single pusher prop configuration)
+       - Modified inertia for longitudinal stability
+  -->
+  <properties arm="0.15" kf="1.2e-8" km="3.0e-11" thrust2weight="3.5" max_speed_kmh="80" gnd_eff_coeff="5.0" prop_radius="8.0e-2" drag_coeff_xy="5.0e-7" drag_coeff_z="8.0e-7" dw_coeff_1="1000.0" dw_coeff_2=".12" dw_coeff_3="-.08" />
+
+  <link name="base_link"> 
+
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <!-- Mass: 0.5kg (500g) - typical for small fixed-wing UAV -->
+      <mass value="0.500"/>
+      <!-- Inertia: Elongated body (higher pitch inertia for stability) -->
+      <inertia ixx=".004" ixy="0.0" ixz="0.0" iyy=".008" iyz="0.0" izz=".004"/>
+    </inertial>
+
+    <!-- Fuselage (main body) -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.6 0.08 0.08"/>
+      </geometry> 
+      <material name="white">
+        <color rgba="0.9 0.9 0.95 1"/>
+      </material> 
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- Fuselage collision box -->
+        <box size="0.6 0.08 0.08"/>
+      </geometry>
+    </collision>  
+
+  </link>
+  
+  <!-- Wings (main lifting surface) -->
+  <link name="wing_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- Wings: wide flat box -->
+        <box size="0.12 0.9 0.02"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0.9 0.9 0.95 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="wing_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="wing_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  
+  <!-- Vertical tail (stabilizer) -->
+  <link name="tail_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.28 0 0.08"/>
+      <geometry>
+        <!-- Vertical stabilizer -->
+        <box size="0.04 0.2 0.18"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0.9 0.9 0.95 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="tail_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="tail_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <!-- Propeller link (single pusher prop at rear) -->
+  <link name="prop0_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.2 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="prop0_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="prop0_link"/>
+  </joint>
+
+  <!-- Dummy propeller links to satisfy 4-motor controller interface -->
+  <link name="prop1_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="prop1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="prop1_link"/>
+  </joint>
+
+  <link name="prop2_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="prop2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="prop2_link"/>
+  </joint>
+
+  <link name="prop3_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="prop3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="prop3_link"/>
+  </joint>
+
+  <link name="center_of_mass_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="center_of_mass_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="center_of_mass_link"/>
+  </joint>
+
+</robot>
