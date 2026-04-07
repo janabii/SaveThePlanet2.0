@@ -93,6 +93,8 @@ Each strategy affects:
 ### Running the Simulation
 
 #### Default run:
+To run the simulation, the `main` folder needs to be downloaded from Github and in the terminal, you will have to run the script below. 
+Please also check requirements.txt and make sure all packages are installed so the simulation runs successfully!!
 
 ```bash
 python v33.py
@@ -175,3 +177,5 @@ After running the simulation, the following outputs are generated:
 - More advanced detection models  
 - Enhanced coordination strategies  
 - Real-time system integration  
+
+Enjoy :))
