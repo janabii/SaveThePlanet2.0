@@ -1,0 +1,8 @@
+numpy
+matplotlib
+scipy
+pybullet
+opencv-python
+roboflow
+Pillow
+gym-pybullet-drones
